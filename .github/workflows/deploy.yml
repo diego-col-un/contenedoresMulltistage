@@ -23,13 +23,13 @@ jobs:
     # 3. CONSTRUIR LA IMAGEN (Aquí ocurre el Multi-stage)
     - name: Construir imagen Docker
       run: |
-        docker build -t mi-usuario-docker/mi-app-go:latest .
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/mi-app-go:latest .
 
     # 4. SUBIR LA IMAGEN (¡Aquí se nota la magia!)
     # Como solo pesa 12MB gracias al Multi-stage, este paso toma 2 segundos en la red de GitHub.
     - name: Subir imagen a Docker Hub
       run: |
-        docker push diaristizabalg/mi-app-go:latest
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/mi-app-go:latest
 
   deploy:
     needs: build-and-push
