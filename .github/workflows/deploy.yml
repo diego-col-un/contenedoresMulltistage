@@ -29,7 +29,7 @@ jobs:
     # Como solo pesa 12MB gracias al Multi-stage, este paso toma 2 segundos en la red de GitHub.
     - name: Subir imagen a Docker Hub
       run: |
-        docker push mi-usuario-docker/mi-app-go:latest
+        docker push diaristizabalg/mi-app-go:latest
 
   deploy:
     needs: build-and-push
