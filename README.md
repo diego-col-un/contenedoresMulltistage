@@ -66,6 +66,8 @@ Las herramientas de escaneo de contenedores (como *Trivy*, *Grype* o *Snyk*) ana
 ### 3. Automatización en el Pipeline de CI/CD
 En un flujo DevSecOps real, este Dockerfile permite separar los pasos de validación. Podríamos añadir una etapa intermedia de pruebas estáticas de seguridad (SAST) o escaneo de dependencias, asegurando que el binario solo se compile si pasa los umbrales de seguridad establecidos. 
 
+---
+
 ## 🧠 Conceptos Clave para Recordar
 
 * **Etapas (`FROM ... AS nombre`)**: Pasos independientes dentro del Dockerfile. Cada nuevo `FROM` borra la memoria del contenedor de compilación anterior y arranca desde un entorno limpio.
