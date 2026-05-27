@@ -50,6 +50,22 @@ El archivo `Dockerfile` de este proyecto se estructura utilizando dos instruccio
 
 ---
 
+## 🛡️ El Enfoque DevSecOps: Seguridad desde el Diseño (*Shift Left*)
+
+En la cultura **DevSecOps**, la seguridad no es una fase final de revisión, sino una responsabilidad compartida que se integra desde las primeras líneas del código y la configuración. Este ejemplo de **Multi-stage build** es un pilar fundamental de DevSecOps por tres razones críticas:
+
+### 1. Reducción Radical de la Superficie de Ataque
+Las imágenes de desarrollo (como `golang:alpine` o `golang:latest`) contienen herramientas como administradores de paquetes (`apk`, `apt`), compiladores, shells (`bash`, `sh`) y utilidades de red (`curl`, `wget`). Si un atacante logra comprometer tu aplicación en producción, usará estas herramientas empaquetadas para escalar privilegios o moverse lateralmente por tu red. 
+* Al usar **Multi-stage**, la imagen final queda completamente "desnuda", conteniendo **únicamente** el binario ejecutable. No hay herramientas que un atacante pueda explotar.
+
+### 2. Mitigación Automática de Vulnerabilidades (CVEs)
+Las herramientas de escaneo de contenedores (como *Trivy*, *Grype* o *Snyk*) analizan los paquetes instalados en el sistema operativo del contenedor.
+* Una imagen completa de Go puede arrastrar cientos de vulnerabilidades teóricas debido a su sistema base pesado.
+* Al pasar el artefacto a una etapa basada en `alpine` o `scratch`, el número de dependencias del sistema operativo cae a casi cero, **eliminando automáticamente el 95% de las vulnerabilidades (CVEs)** del reporte de seguridad.
+
+### 3. Automatización en el Pipeline de CI/CD
+En un flujo DevSecOps real, este Dockerfile permite separar los pasos de validación. Podríamos añadir una etapa intermedia de pruebas estáticas de seguridad (SAST) o escaneo de dependencias, asegurando que el binario solo se compile si pasa los umbrales de seguridad establecidos. 
+
 ## 🧠 Conceptos Clave para Recordar
 
 * **Etapas (`FROM ... AS nombre`)**: Pasos independientes dentro del Dockerfile. Cada nuevo `FROM` borra la memoria del contenedor de compilación anterior y arranca desde un entorno limpio.
