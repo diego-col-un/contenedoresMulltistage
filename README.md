@@ -2,7 +2,7 @@
 
 Este repositorio es un ejemplo práctico de cómo construir imágenes de Docker ultra eficientes utilizando **Multi-stage builds** (Construcciones Multi-etapa) con el lenguaje de programación **Go**.
 
-El objetivo principal es demostrar cómo reducir drásticamente el tamaño de la imagen final de producción, manteniendo todas las herramientas de desarrollo y compilación aisladas en una etapa intermedia que luego se descarta.
+El objetivo principal es demostrar cómo reducir drásticamente el tjaamaño de la imagen final de producción, manteniendo todas las herramientas de desarrollo y compilación aisladas en una etapa intermedia que luego se descarta.
 
 ## 📌 ¿Por qué usar Multi-stage con Go?
 
